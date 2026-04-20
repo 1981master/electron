@@ -1,0 +1,75 @@
+{
+    "name": "deffufa-ui",
+    "version": "0.1.0",
+    "description": "Deffufa desktop application",
+    "author": "Mohammed",
+    "private": true,
+    "main": "main.js",
+    "dependencies": {
+        "axios": "^1.13.5",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-redux": "^9.2.0",
+        "react-router-dom": "^7.14.0"
+    },
+    "devDependencies": {
+        "electron": "^25.0.0",
+        "electron-builder": "^26.8.1",
+        "wait-on": "^7.0.1",
+        "typescript": "^4.9.5"
+    },
+    "scripts": {
+        "electron": "electron .",
+        "dist": "electron-builder"
+    },
+    "build": {
+        "appId": "com.deffufa.app",
+        "productName": "Deffufa",
+        "directories": {
+            "buildResources": "assets",
+            "output": "dist"
+        },
+        "files": [
+            "main.js",
+            "preload.js",
+            "build/**/*",
+            "assets/**/*",
+            "backend/**/*"
+        ],
+        "extraResources": [
+            {
+                "from": "backend/",
+                "to": "backend",
+                "filter": [
+                    "**/*"
+                ]
+            }
+        ],
+        "asarUnpack": [
+            "backend/deffufa-0.0.1-SNAPSHOT.jar",
+            "backend/jre/**",
+            "backend/**",
+            "build/**"
+        ],
+        "win": {
+            "icon": "assets/dvs-icon.ico",
+            "target": [
+                "nsis"
+            ]
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true,
+            "shortcutName": "Deffufa",
+            "installerIcon": "assets/dvs-icon.ico",
+            "uninstallerIcon": "assets/dvs-icon.ico",
+            "installerHeaderIcon": "assets/dvs-icon.ico",
+            "license": "assets/license.text"
+        },
+        "mac": {
+            "icon": "assets/dvs.icns"
+        }
+    }
+}
